@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useSnapshot } from 'valtio'
-import { state } from '../serve/store'
+import { useStore } from '../serve/store'
 
 export function Overlay() {
   const transition = { type: 'spring', duration: 0.8 }
@@ -21,18 +20,18 @@ export function Overlay() {
 }
 
 function Customizer() {
-  const snap = useSnapshot(state)
+  const store = useStore()
   return (
     <div className="customizer">
       <div className="color-options">
-        {snap.colors.map((color) => (
+        {store.colors.map((color) => (
           <div
             key={color}
             className={`circle`}
-            style={{ background: color, transform: `scale(${state.color === color ? 1.2 : 1})` }}
+            style={{ background: color, transform: `scale(${store.color === color ? 1.2 : 1})` }}
             onClick={() => {
-              const boxID = state.boxs.findIndex((item) => item.id === state.selectedID)
-              if (boxID > -1) state.boxs[boxID].color = color
+              const boxID = store.boxs.findIndex((item) => item.id === store.selectedID)
+              if (boxID > -1) store.setBoxColor(boxID, color)
             }}></div>
         ))}
       </div>
@@ -40,8 +39,8 @@ function Customizer() {
         <button
           className="button"
           onClick={() => {
-            state.boxs = [...state.boxs, { color: state.color, pos: 0, id: state.lastIndex }]
-            state.lastIndex = state.lastIndex + 1
+            store.addboxs({ color: store.color, pos: 0, id: store.lastIndex })
+            store.setlastIndex(store.lastIndex + 1)
           }}>
           Add
         </button>
@@ -49,8 +48,7 @@ function Customizer() {
           className="button"
           style={{ background: '#e00011' }}
           onClick={() => {
-            if (state.selectedID > -1) state.boxs = state.boxs.filter((item) => item.id !== state.selectedID)
-            console.log(state.boxs)
+            if (store.selectedID > -1) store.delboxs(store.selectedID)
           }}>
           Delete
         </button>
