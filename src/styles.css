@@ -28,8 +28,8 @@ body,
 }
 
 body {
-  background: #6c6969;
   font-family: 'Inter', sans-serif;
+  background-color: gray;
 }
 
 @keyframes fade-in {
@@ -69,14 +69,13 @@ header p.hidden {
 
 section {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  width: 100%;
 }
 
 .section--container {
@@ -151,8 +150,6 @@ section {
   justify-content: flex-end;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  width: 100%;
   margin-bottom: 25px;
 }
 
