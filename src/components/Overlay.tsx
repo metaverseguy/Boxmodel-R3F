@@ -36,10 +36,10 @@ function Customizer() {
               const boxID = store.boxs.findIndex(
                 (item) => item.id === store.selected_id
               );
-              if (boxID > -1) {
-                store.setBoxColor(boxID, color);
-                store.setColor(color);
-              }
+              console.log("boxID", boxID);
+
+              store.setBoxColor(boxID, color);
+              store.setColor(color);
             }}
           ></div>
         ))}
