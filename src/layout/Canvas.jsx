@@ -6,7 +6,7 @@ import { Sphere } from "../componentsForThree/Sphere";
 export function App() {
   const store = useStore()
   return (
-    <Canvas shadows camera={{ position: [5,4,2], fov: 45 }} gl={{ preserveDrawingBuffer: true }} eventSource={document.getElementById('root')} eventPrefix="client">
+    <Canvas shadows camera={{ position: [5,4,2], fov: 45 }} eventSource={document.getElementById('root')} eventPrefix="client">
       <ambientLight intensity={0.5} />
       <Environment files="sand.hdr" />
       {store.boxs.map((item, index) => {

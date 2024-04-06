@@ -7,13 +7,14 @@ export const useStore = create((set) => ({
   selectedID: -1,
   lastIndex: 1,
   addboxs: (newboxs) => set((state) => ({ boxs: [...state.boxs, newboxs] })),
-  delboxs: (selectedID) => set((state) => ({boxs : state.boxs.filter((item) => item.id !== selectedID)})),
-  setBoxColor: (boxIndex, newColor) => set((state) => {
-    const box = state.boxs[boxIndex];
-    const updatedBoxs = [...state.boxs];
-    updatedBoxs[boxIndex] = { ...box, color: newColor };
-    return { boxs: updatedBoxs };
-  }),
+  delboxs: (selectedID) => set((state) => ({ boxs: state.boxs.filter((item) => item.id !== selectedID) })),
+  setBoxColor: (boxIndex, newColor) =>
+    set((state) => {
+      const box = state.boxs[boxIndex]
+      const updatedBoxs = [...state.boxs]
+      updatedBoxs[boxIndex] = { ...box, color: newColor }
+      return { boxs: updatedBoxs }
+    }),
   setlastIndex: (newlastIndex) => set(() => ({ lastIndex: newlastIndex })),
-  setselectedID: (newselectedID) => set(() => ({ selectedID: newselectedID })),
+  setselectedID: (newselectedID) => set(() => ({ selectedID: newselectedID }))
 }))

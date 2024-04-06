@@ -29,7 +29,9 @@ function Customizer() {
             key={color}
             className={`circle`}
             style={{ background: color, transform: `scale(${store.color === color ? 1.2 : 1})` }}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
               const boxID = store.boxs.findIndex((item) => item.id === store.selectedID)
               if (boxID > -1) store.setBoxColor(boxID, color)
             }}></div>
